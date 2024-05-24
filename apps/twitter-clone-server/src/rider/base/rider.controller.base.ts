@@ -155,7 +155,14 @@ export class RiderControllerBase {
     const results = await this.service.findRides(params.id, {
       ...query,
       select: {
+        accepted: true,
+        attemptedDrivers: true,
+        baseFare: true,
+        completedAt: true,
         createdAt: true,
+        creditCardVerified: true,
+        currentLocation: true,
+        demandMultiplier: true,
 
         driver: {
           select: {
@@ -166,8 +173,15 @@ export class RiderControllerBase {
         dropoffLocation: true,
         endTime: true,
         fare: true,
+        heatMapZone: true,
         id: true,
+        paymentDetails: true,
+        paymentStatus: true,
+        perKmRate: true,
         pickupLocation: true,
+        pricingType: true,
+        radius: true,
+        requestedAt: true,
 
         rider: {
           select: {
@@ -175,6 +189,7 @@ export class RiderControllerBase {
           },
         },
 
+        serviceFee: true,
         startTime: true,
         status: true,
         updatedAt: true,

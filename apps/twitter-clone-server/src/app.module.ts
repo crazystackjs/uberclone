@@ -6,10 +6,12 @@ import { RetweetModule } from "./retweet/retweet.module";
 import { FollowerModule } from "./follower/follower.module";
 import { MessageModule } from "./message/message.module";
 import { ChatRoomModule } from "./chatRoom/chatRoom.module";
-import { RideModule } from "./ride/ride.module";
 import { DriverModule } from "./driver/driver.module";
 import { RiderModule } from "./rider/rider.module";
+import { RideModule } from "./ride/ride.module";
 import { VehicleModule } from "./vehicle/vehicle.module";
+import { HeatMapZoneModule } from "./heatMapZone/heatMapZone.module";
+import { RidePricingModule } from "./RidePricing/ridepricing.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -29,10 +31,12 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
     FollowerModule,
     MessageModule,
     ChatRoomModule,
-    RideModule,
     DriverModule,
     RiderModule,
+    RideModule,
     VehicleModule,
+    HeatMapZoneModule,
+    RidePricingModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

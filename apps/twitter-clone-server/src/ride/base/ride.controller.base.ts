@@ -45,7 +45,14 @@ export class RideControllerBase {
           : undefined,
       },
       select: {
+        accepted: true,
+        attemptedDrivers: true,
+        baseFare: true,
+        completedAt: true,
         createdAt: true,
+        creditCardVerified: true,
+        currentLocation: true,
+        demandMultiplier: true,
 
         driver: {
           select: {
@@ -56,8 +63,15 @@ export class RideControllerBase {
         dropoffLocation: true,
         endTime: true,
         fare: true,
+        heatMapZone: true,
         id: true,
+        paymentDetails: true,
+        paymentStatus: true,
+        perKmRate: true,
         pickupLocation: true,
+        pricingType: true,
+        radius: true,
+        requestedAt: true,
 
         rider: {
           select: {
@@ -65,6 +79,7 @@ export class RideControllerBase {
           },
         },
 
+        serviceFee: true,
         startTime: true,
         status: true,
         updatedAt: true,
@@ -80,7 +95,14 @@ export class RideControllerBase {
     return this.service.rides({
       ...args,
       select: {
+        accepted: true,
+        attemptedDrivers: true,
+        baseFare: true,
+        completedAt: true,
         createdAt: true,
+        creditCardVerified: true,
+        currentLocation: true,
+        demandMultiplier: true,
 
         driver: {
           select: {
@@ -91,8 +113,15 @@ export class RideControllerBase {
         dropoffLocation: true,
         endTime: true,
         fare: true,
+        heatMapZone: true,
         id: true,
+        paymentDetails: true,
+        paymentStatus: true,
+        perKmRate: true,
         pickupLocation: true,
+        pricingType: true,
+        radius: true,
+        requestedAt: true,
 
         rider: {
           select: {
@@ -100,6 +129,7 @@ export class RideControllerBase {
           },
         },
 
+        serviceFee: true,
         startTime: true,
         status: true,
         updatedAt: true,
@@ -116,7 +146,14 @@ export class RideControllerBase {
     const result = await this.service.ride({
       where: params,
       select: {
+        accepted: true,
+        attemptedDrivers: true,
+        baseFare: true,
+        completedAt: true,
         createdAt: true,
+        creditCardVerified: true,
+        currentLocation: true,
+        demandMultiplier: true,
 
         driver: {
           select: {
@@ -127,8 +164,15 @@ export class RideControllerBase {
         dropoffLocation: true,
         endTime: true,
         fare: true,
+        heatMapZone: true,
         id: true,
+        paymentDetails: true,
+        paymentStatus: true,
+        perKmRate: true,
         pickupLocation: true,
+        pricingType: true,
+        radius: true,
+        requestedAt: true,
 
         rider: {
           select: {
@@ -136,6 +180,7 @@ export class RideControllerBase {
           },
         },
 
+        serviceFee: true,
         startTime: true,
         status: true,
         updatedAt: true,
@@ -175,7 +220,14 @@ export class RideControllerBase {
             : undefined,
         },
         select: {
+          accepted: true,
+          attemptedDrivers: true,
+          baseFare: true,
+          completedAt: true,
           createdAt: true,
+          creditCardVerified: true,
+          currentLocation: true,
+          demandMultiplier: true,
 
           driver: {
             select: {
@@ -186,8 +238,15 @@ export class RideControllerBase {
           dropoffLocation: true,
           endTime: true,
           fare: true,
+          heatMapZone: true,
           id: true,
+          paymentDetails: true,
+          paymentStatus: true,
+          perKmRate: true,
           pickupLocation: true,
+          pricingType: true,
+          radius: true,
+          requestedAt: true,
 
           rider: {
             select: {
@@ -195,6 +254,7 @@ export class RideControllerBase {
             },
           },
 
+          serviceFee: true,
           startTime: true,
           status: true,
           updatedAt: true,
@@ -220,7 +280,14 @@ export class RideControllerBase {
       return await this.service.deleteRide({
         where: params,
         select: {
+          accepted: true,
+          attemptedDrivers: true,
+          baseFare: true,
+          completedAt: true,
           createdAt: true,
+          creditCardVerified: true,
+          currentLocation: true,
+          demandMultiplier: true,
 
           driver: {
             select: {
@@ -231,8 +298,15 @@ export class RideControllerBase {
           dropoffLocation: true,
           endTime: true,
           fare: true,
+          heatMapZone: true,
           id: true,
+          paymentDetails: true,
+          paymentStatus: true,
+          perKmRate: true,
           pickupLocation: true,
+          pricingType: true,
+          radius: true,
+          requestedAt: true,
 
           rider: {
             select: {
@@ -240,6 +314,7 @@ export class RideControllerBase {
             },
           },
 
+          serviceFee: true,
           startTime: true,
           status: true,
           updatedAt: true,

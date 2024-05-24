@@ -18,47 +18,87 @@ import { RideService } from "../ride.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  accepted: "true",
+  baseFare: 42.42,
+  completedAt: new Date(),
   createdAt: new Date(),
+  creditCardVerified: "true",
+  demandMultiplier: 42.42,
   dropoffLocation: "exampleDropoffLocation",
   endTime: new Date(),
   fare: 42.42,
+  heatMapZone: "exampleHeatMapZone",
   id: "exampleId",
+  perKmRate: 42.42,
   pickupLocation: "examplePickupLocation",
+  radius: 42.42,
+  requestedAt: new Date(),
+  serviceFee: 42.42,
   startTime: new Date(),
   status: "exampleStatus",
   updatedAt: new Date(),
 };
 const CREATE_RESULT = {
+  accepted: "true",
+  baseFare: 42.42,
+  completedAt: new Date(),
   createdAt: new Date(),
+  creditCardVerified: "true",
+  demandMultiplier: 42.42,
   dropoffLocation: "exampleDropoffLocation",
   endTime: new Date(),
   fare: 42.42,
+  heatMapZone: "exampleHeatMapZone",
   id: "exampleId",
+  perKmRate: 42.42,
   pickupLocation: "examplePickupLocation",
+  radius: 42.42,
+  requestedAt: new Date(),
+  serviceFee: 42.42,
   startTime: new Date(),
   status: "exampleStatus",
   updatedAt: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
+    accepted: "true",
+    baseFare: 42.42,
+    completedAt: new Date(),
     createdAt: new Date(),
+    creditCardVerified: "true",
+    demandMultiplier: 42.42,
     dropoffLocation: "exampleDropoffLocation",
     endTime: new Date(),
     fare: 42.42,
+    heatMapZone: "exampleHeatMapZone",
     id: "exampleId",
+    perKmRate: 42.42,
     pickupLocation: "examplePickupLocation",
+    radius: 42.42,
+    requestedAt: new Date(),
+    serviceFee: 42.42,
     startTime: new Date(),
     status: "exampleStatus",
     updatedAt: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
+  accepted: "true",
+  baseFare: 42.42,
+  completedAt: new Date(),
   createdAt: new Date(),
+  creditCardVerified: "true",
+  demandMultiplier: 42.42,
   dropoffLocation: "exampleDropoffLocation",
   endTime: new Date(),
   fare: 42.42,
+  heatMapZone: "exampleHeatMapZone",
   id: "exampleId",
+  perKmRate: 42.42,
   pickupLocation: "examplePickupLocation",
+  radius: 42.42,
+  requestedAt: new Date(),
+  serviceFee: 42.42,
   startTime: new Date(),
   status: "exampleStatus",
   updatedAt: new Date(),
@@ -146,8 +186,10 @@ describe("Ride", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
+        completedAt: CREATE_RESULT.completedAt.toISOString(),
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         endTime: CREATE_RESULT.endTime.toISOString(),
+        requestedAt: CREATE_RESULT.requestedAt.toISOString(),
         startTime: CREATE_RESULT.startTime.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       });
@@ -160,8 +202,10 @@ describe("Ride", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
+          completedAt: FIND_MANY_RESULT[0].completedAt.toISOString(),
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
           endTime: FIND_MANY_RESULT[0].endTime.toISOString(),
+          requestedAt: FIND_MANY_RESULT[0].requestedAt.toISOString(),
           startTime: FIND_MANY_RESULT[0].startTime.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
@@ -185,8 +229,10 @@ describe("Ride", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
+        completedAt: FIND_ONE_RESULT.completedAt.toISOString(),
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
         endTime: FIND_ONE_RESULT.endTime.toISOString(),
+        requestedAt: FIND_ONE_RESULT.requestedAt.toISOString(),
         startTime: FIND_ONE_RESULT.startTime.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
       });
@@ -200,8 +246,10 @@ describe("Ride", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
+        completedAt: CREATE_RESULT.completedAt.toISOString(),
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         endTime: CREATE_RESULT.endTime.toISOString(),
+        requestedAt: CREATE_RESULT.requestedAt.toISOString(),
         startTime: CREATE_RESULT.startTime.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       })

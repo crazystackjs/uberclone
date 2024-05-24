@@ -11,17 +11,98 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { DriverWhereUniqueInput } from "../../driver/base/DriverWhereUniqueInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
 import { Type } from "class-transformer";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { IsOptional, ValidateNested, IsEnum } from "class-validator";
+import { JsonFilter } from "../../util/JsonFilter";
 import { FloatNullableFilter } from "../../util/FloatNullableFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { DriverWhereUniqueInput } from "../../driver/base/DriverWhereUniqueInput";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { EnumRidePaymentStatus } from "./EnumRidePaymentStatus";
+import { EnumRidePricingType } from "./EnumRidePricingType";
 import { RiderWhereUniqueInput } from "../../rider/base/RiderWhereUniqueInput";
 
 @InputType()
 class RideWhereInput {
+  @ApiProperty({
+    required: false,
+    type: BooleanNullableFilter,
+  })
+  @Type(() => BooleanNullableFilter)
+  @IsOptional()
+  @Field(() => BooleanNullableFilter, {
+    nullable: true,
+  })
+  accepted?: BooleanNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: JsonFilter,
+  })
+  @Type(() => JsonFilter)
+  @IsOptional()
+  @Field(() => JsonFilter, {
+    nullable: true,
+  })
+  attemptedDrivers?: JsonFilter;
+
+  @ApiProperty({
+    required: false,
+    type: FloatNullableFilter,
+  })
+  @Type(() => FloatNullableFilter)
+  @IsOptional()
+  @Field(() => FloatNullableFilter, {
+    nullable: true,
+  })
+  baseFare?: FloatNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: DateTimeNullableFilter,
+  })
+  @Type(() => DateTimeNullableFilter)
+  @IsOptional()
+  @Field(() => DateTimeNullableFilter, {
+    nullable: true,
+  })
+  completedAt?: DateTimeNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: BooleanNullableFilter,
+  })
+  @Type(() => BooleanNullableFilter)
+  @IsOptional()
+  @Field(() => BooleanNullableFilter, {
+    nullable: true,
+  })
+  creditCardVerified?: BooleanNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: JsonFilter,
+  })
+  @Type(() => JsonFilter)
+  @IsOptional()
+  @Field(() => JsonFilter, {
+    nullable: true,
+  })
+  currentLocation?: JsonFilter;
+
+  @ApiProperty({
+    required: false,
+    type: FloatNullableFilter,
+  })
+  @Type(() => FloatNullableFilter)
+  @IsOptional()
+  @Field(() => FloatNullableFilter, {
+    nullable: true,
+  })
+  demandMultiplier?: FloatNullableFilter;
+
   @ApiProperty({
     required: false,
     type: () => DriverWhereUniqueInput,
@@ -69,6 +150,17 @@ class RideWhereInput {
 
   @ApiProperty({
     required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  heatMapZone?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
     type: StringFilter,
   })
   @Type(() => StringFilter)
@@ -77,6 +169,39 @@ class RideWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: JsonFilter,
+  })
+  @Type(() => JsonFilter)
+  @IsOptional()
+  @Field(() => JsonFilter, {
+    nullable: true,
+  })
+  paymentDetails?: JsonFilter;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumRidePaymentStatus,
+  })
+  @IsEnum(EnumRidePaymentStatus)
+  @IsOptional()
+  @Field(() => EnumRidePaymentStatus, {
+    nullable: true,
+  })
+  paymentStatus?: "Option1";
+
+  @ApiProperty({
+    required: false,
+    type: FloatNullableFilter,
+  })
+  @Type(() => FloatNullableFilter)
+  @IsOptional()
+  @Field(() => FloatNullableFilter, {
+    nullable: true,
+  })
+  perKmRate?: FloatNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -91,6 +216,39 @@ class RideWhereInput {
 
   @ApiProperty({
     required: false,
+    enum: EnumRidePricingType,
+  })
+  @IsEnum(EnumRidePricingType)
+  @IsOptional()
+  @Field(() => EnumRidePricingType, {
+    nullable: true,
+  })
+  pricingType?: "Option1";
+
+  @ApiProperty({
+    required: false,
+    type: FloatNullableFilter,
+  })
+  @Type(() => FloatNullableFilter)
+  @IsOptional()
+  @Field(() => FloatNullableFilter, {
+    nullable: true,
+  })
+  radius?: FloatNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: DateTimeNullableFilter,
+  })
+  @Type(() => DateTimeNullableFilter)
+  @IsOptional()
+  @Field(() => DateTimeNullableFilter, {
+    nullable: true,
+  })
+  requestedAt?: DateTimeNullableFilter;
+
+  @ApiProperty({
+    required: false,
     type: () => RiderWhereUniqueInput,
   })
   @ValidateNested()
@@ -100,6 +258,17 @@ class RideWhereInput {
     nullable: true,
   })
   rider?: RiderWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: FloatNullableFilter,
+  })
+  @Type(() => FloatNullableFilter)
+  @IsOptional()
+  @Field(() => FloatNullableFilter, {
+    nullable: true,
+  })
+  serviceFee?: FloatNullableFilter;
 
   @ApiProperty({
     required: false,

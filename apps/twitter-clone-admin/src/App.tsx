@@ -33,10 +33,6 @@ import { ChatRoomList } from "./chatRoom/ChatRoomList";
 import { ChatRoomCreate } from "./chatRoom/ChatRoomCreate";
 import { ChatRoomEdit } from "./chatRoom/ChatRoomEdit";
 import { ChatRoomShow } from "./chatRoom/ChatRoomShow";
-import { RideList } from "./ride/RideList";
-import { RideCreate } from "./ride/RideCreate";
-import { RideEdit } from "./ride/RideEdit";
-import { RideShow } from "./ride/RideShow";
 import { DriverList } from "./driver/DriverList";
 import { DriverCreate } from "./driver/DriverCreate";
 import { DriverEdit } from "./driver/DriverEdit";
@@ -45,10 +41,18 @@ import { RiderList } from "./rider/RiderList";
 import { RiderCreate } from "./rider/RiderCreate";
 import { RiderEdit } from "./rider/RiderEdit";
 import { RiderShow } from "./rider/RiderShow";
+import { RideList } from "./ride/RideList";
+import { RideCreate } from "./ride/RideCreate";
+import { RideEdit } from "./ride/RideEdit";
+import { RideShow } from "./ride/RideShow";
 import { VehicleList } from "./vehicle/VehicleList";
 import { VehicleCreate } from "./vehicle/VehicleCreate";
 import { VehicleEdit } from "./vehicle/VehicleEdit";
 import { VehicleShow } from "./vehicle/VehicleShow";
+import { HeatMapZoneList } from "./heatMapZone/HeatMapZoneList";
+import { HeatMapZoneCreate } from "./heatMapZone/HeatMapZoneCreate";
+import { HeatMapZoneEdit } from "./heatMapZone/HeatMapZoneEdit";
+import { HeatMapZoneShow } from "./heatMapZone/HeatMapZoneShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -125,13 +129,6 @@ const App = (): React.ReactElement => {
           show={ChatRoomShow}
         />
         <Resource
-          name="Ride"
-          list={RideList}
-          edit={RideEdit}
-          create={RideCreate}
-          show={RideShow}
-        />
-        <Resource
           name="Driver"
           list={DriverList}
           edit={DriverEdit}
@@ -146,11 +143,25 @@ const App = (): React.ReactElement => {
           show={RiderShow}
         />
         <Resource
+          name="Ride"
+          list={RideList}
+          edit={RideEdit}
+          create={RideCreate}
+          show={RideShow}
+        />
+        <Resource
           name="Vehicle"
           list={VehicleList}
           edit={VehicleEdit}
           create={VehicleCreate}
           show={VehicleShow}
+        />
+        <Resource
+          name="HeatMapZone"
+          list={HeatMapZoneList}
+          edit={HeatMapZoneEdit}
+          create={HeatMapZoneCreate}
+          show={HeatMapZoneShow}
         />
       </Admin>
     </div>

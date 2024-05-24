@@ -11,19 +11,101 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { DriverWhereUniqueInput } from "../../driver/base/DriverWhereUniqueInput";
 import {
-  ValidateNested,
+  IsBoolean,
   IsOptional,
-  IsString,
-  IsDate,
   IsNumber,
+  IsDate,
+  ValidateNested,
+  IsString,
+  IsEnum,
 } from "class-validator";
+import { IsJSONValue } from "../../validators";
+import { GraphQLJSON } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 import { Type } from "class-transformer";
+import { DriverWhereUniqueInput } from "../../driver/base/DriverWhereUniqueInput";
+import { EnumRidePaymentStatus } from "./EnumRidePaymentStatus";
+import { EnumRidePricingType } from "./EnumRidePricingType";
 import { RiderWhereUniqueInput } from "../../rider/base/RiderWhereUniqueInput";
 
 @InputType()
 class RideUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  accepted?: boolean | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSONValue()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  attemptedDrivers?: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  baseFare?: number | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  completedAt?: Date | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  creditCardVerified?: boolean | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSONValue()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  currentLocation?: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  demandMultiplier?: number | null;
+
   @ApiProperty({
     required: false,
     type: () => DriverWhereUniqueInput,
@@ -78,7 +160,83 @@ class RideUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  heatMapZone?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSONValue()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  paymentDetails?: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumRidePaymentStatus,
+  })
+  @IsEnum(EnumRidePaymentStatus)
+  @IsOptional()
+  @Field(() => EnumRidePaymentStatus, {
+    nullable: true,
+  })
+  paymentStatus?: "Option1" | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  perKmRate?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   pickupLocation?: string | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumRidePricingType,
+  })
+  @IsEnum(EnumRidePricingType)
+  @IsOptional()
+  @Field(() => EnumRidePricingType, {
+    nullable: true,
+  })
+  pricingType?: "Option1" | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  radius?: number | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  requestedAt?: Date | null;
 
   @ApiProperty({
     required: false,
@@ -91,6 +249,17 @@ class RideUpdateInput {
     nullable: true,
   })
   rider?: RiderWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  serviceFee?: number | null;
 
   @ApiProperty({
     required: false,

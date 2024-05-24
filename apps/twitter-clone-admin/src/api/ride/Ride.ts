@@ -1,15 +1,31 @@
+import { JsonValue } from "type-fest";
 import { Driver } from "../driver/Driver";
 import { Rider } from "../rider/Rider";
 
 export type Ride = {
+  accepted: boolean | null;
+  attemptedDrivers: JsonValue;
+  baseFare: number | null;
+  completedAt: Date | null;
   createdAt: Date;
+  creditCardVerified: boolean | null;
+  currentLocation: JsonValue;
+  demandMultiplier: number | null;
   driver?: Driver | null;
   dropoffLocation: string | null;
   endTime: Date | null;
   fare: number | null;
+  heatMapZone: string | null;
   id: string;
+  paymentDetails: JsonValue;
+  paymentStatus?: "Option1" | null;
+  perKmRate: number | null;
   pickupLocation: string | null;
+  pricingType?: "Option1" | null;
+  radius: number | null;
+  requestedAt: Date | null;
   rider?: Rider | null;
+  serviceFee: number | null;
   startTime: Date | null;
   status: string | null;
   updatedAt: Date;
