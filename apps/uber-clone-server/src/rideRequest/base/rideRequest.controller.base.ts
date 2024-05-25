@@ -23,6 +23,7 @@ import { RideRequestFindManyArgs } from "./RideRequestFindManyArgs";
 import { RideRequestWhereUniqueInput } from "./RideRequestWhereUniqueInput";
 import { RideRequestUpdateInput } from "./RideRequestUpdateInput";
 import { CancelRideRequestInput } from "../CancelRideRequestInput";
+import { AcceptRideRequestOutput } from "../AcceptRideRequestOutput";
 import { CancelRideRequestOutput } from "../CancelRideRequestOutput";
 
 export class RideRequestControllerBase {
@@ -195,6 +196,23 @@ export class RideRequestControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.Post("/acceptRideRequest")
+  @swagger.ApiOkResponse({
+    type: AcceptRideRequestOutput,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async AcceptRideRequest(
+    @common.Body()
+    body: CancelRideRequestInput
+  ): Promise<AcceptRideRequestOutput> {
+    return this.service.AcceptRideRequest(body);
   }
 
   @common.Post("/cancelRideRequest")

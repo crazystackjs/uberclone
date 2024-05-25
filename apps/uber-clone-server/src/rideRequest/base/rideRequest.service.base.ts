@@ -15,6 +15,8 @@ import {
   RideRequest as PrismaRideRequest,
   Rider as PrismaRider,
 } from "@prisma/client";
+import { AcceptRideRequestInput } from "../AcceptRideRequestInput";
+import { AcceptRideRequestOutput } from "../AcceptRideRequestOutput";
 import { CancelRideRequestInput } from "../CancelRideRequestInput";
 import { CancelRideRequestOutput } from "../CancelRideRequestOutput";
 
@@ -61,6 +63,11 @@ export class RideRequestServiceBase {
         where: { id: parentId },
       })
       .rider();
+  }
+  async AcceptRideRequest(
+    args: AcceptRideRequestInput
+  ): Promise<AcceptRideRequestOutput> {
+    throw new Error("Not implemented");
   }
   async CancelRideRequest(
     args: CancelRideRequestInput

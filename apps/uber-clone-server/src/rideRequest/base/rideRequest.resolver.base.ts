@@ -21,6 +21,8 @@ import { CreateRideRequestArgs } from "./CreateRideRequestArgs";
 import { UpdateRideRequestArgs } from "./UpdateRideRequestArgs";
 import { DeleteRideRequestArgs } from "./DeleteRideRequestArgs";
 import { Rider } from "../../rider/base/Rider";
+import { AcceptRideRequestInput } from "../AcceptRideRequestInput";
+import { AcceptRideRequestOutput } from "../AcceptRideRequestOutput";
 import { CancelRideRequestInput } from "../CancelRideRequestInput";
 import { CancelRideRequestOutput } from "../CancelRideRequestOutput";
 import { RideRequestService } from "../rideRequest.service";
@@ -127,6 +129,14 @@ export class RideRequestResolverBase {
       return null;
     }
     return result;
+  }
+
+  @graphql.Mutation(() => AcceptRideRequestOutput)
+  async AcceptRideRequest(
+    @graphql.Args()
+    args: AcceptRideRequestInput
+  ): Promise<AcceptRideRequestOutput> {
+    return this.service.AcceptRideRequest(args);
   }
 
   @graphql.Mutation(() => CancelRideRequestOutput)
