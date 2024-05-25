@@ -1,0 +1,30 @@
+import { SortOrder } from "../../util/SortOrder";
+
+export type RideOrderByInput = {
+  accepted?: SortOrder;
+  attemptedDrivers?: SortOrder;
+  baseFare?: SortOrder;
+  completedAt?: SortOrder;
+  createdAt?: SortOrder;
+  creditCardVerified?: SortOrder;
+  currentLocation?: SortOrder;
+  demandMultiplier?: SortOrder;
+  driverId?: SortOrder;
+  dropoffLocation?: SortOrder;
+  endTime?: SortOrder;
+  fare?: SortOrder;
+  heatMapZone?: SortOrder;
+  id?: SortOrder;
+  paymentDetails?: SortOrder;
+  paymentStatus?: SortOrder;
+  perKmRate?: SortOrder;
+  pickupLocation?: SortOrder;
+  pricingType?: SortOrder;
+  radius?: SortOrder;
+  requestedAt?: SortOrder;
+  riderId?: SortOrder;
+  serviceFee?: SortOrder;
+  startTime?: SortOrder;
+  status?: SortOrder;
+  updatedAt?: SortOrder;
+};

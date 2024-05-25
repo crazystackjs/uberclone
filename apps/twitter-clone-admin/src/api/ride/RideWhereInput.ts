@@ -1,0 +1,35 @@
+import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
+import { JsonFilter } from "../../util/JsonFilter";
+import { FloatNullableFilter } from "../../util/FloatNullableFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { DriverWhereUniqueInput } from "../driver/DriverWhereUniqueInput";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { StringFilter } from "../../util/StringFilter";
+import { RiderWhereUniqueInput } from "../rider/RiderWhereUniqueInput";
+
+export type RideWhereInput = {
+  accepted?: BooleanNullableFilter;
+  attemptedDrivers?: JsonFilter;
+  baseFare?: FloatNullableFilter;
+  completedAt?: DateTimeNullableFilter;
+  creditCardVerified?: BooleanNullableFilter;
+  currentLocation?: JsonFilter;
+  demandMultiplier?: FloatNullableFilter;
+  driver?: DriverWhereUniqueInput;
+  dropoffLocation?: StringNullableFilter;
+  endTime?: DateTimeNullableFilter;
+  fare?: FloatNullableFilter;
+  heatMapZone?: StringNullableFilter;
+  id?: StringFilter;
+  paymentDetails?: JsonFilter;
+  paymentStatus?: "Option1";
+  perKmRate?: FloatNullableFilter;
+  pickupLocation?: StringNullableFilter;
+  pricingType?: "Option1";
+  radius?: FloatNullableFilter;
+  requestedAt?: DateTimeNullableFilter;
+  rider?: RiderWhereUniqueInput;
+  serviceFee?: FloatNullableFilter;
+  startTime?: DateTimeNullableFilter;
+  status?: StringNullableFilter;
+};
