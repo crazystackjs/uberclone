@@ -1,0 +1,77 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Driver {
+  createdAt       DateTime  @default(now())
+  currentLocation Json?
+  email           String?
+  id              String    @id @default(cuid())
+  name            String?
+  phoneNumber     String?
+  rides           Ride[]
+  updatedAt       DateTime  @updatedAt
+  vehicle         Vehicle?  @relation(name: "DriversOnVehicle", fields: [vehicleId], references: [id])
+  vehicleId       String?
+  vehicles        Vehicle[] @relation(name: "DriverOnVehicles")
+}
+
+model Rider {
+  createdAt    DateTime      @default(now())
+  email        String?
+  id           String        @id @default(cuid())
+  name         String?
+  phoneNumber  String?
+  rideRequests RideRequest[]
+  rides        Ride[]
+  updatedAt    DateTime      @updatedAt
+}
+
+model RideRequest {
+  createdAt           DateTime               @default(now())
+  destinationLocation Json?
+  id                  String                 @id @default(cuid())
+  pickupLocation      Json?
+  rider               Rider?                 @relation(fields: [riderId], references: [id])
+  riderId             String?
+  status              EnumRideRequestStatus?
+  updatedAt           DateTime               @updatedAt
+}
+
+model Vehicle {
+  createdAt   DateTime @default(now())
+  driver      Driver?  @relation(name: "DriverOnVehicles", fields: [driverId], references: [id])
+  driverId    String?
+  drivers     Driver[] @relation(name: "DriversOnVehicle")
+  id          String   @id @default(cuid())
+  make        String?
+  model       String?
+  plateNumber String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Ride {
+  createdAt     DateTime        @default(now())
+  driver        Driver?         @relation(fields: [driverId], references: [id])
+  driverId      String?
+  endLocation   Json?
+  id            String          @id @default(cuid())
+  rider         Rider?          @relation(fields: [riderId], references: [id])
+  riderId       String?
+  startLocation Json?
+  status        EnumRideStatus?
+  updatedAt     DateTime        @updatedAt
+}
+
+enum EnumRideRequestStatus {
+  Option1
+}
+
+enum EnumRideStatus {
+  Option1
+}
