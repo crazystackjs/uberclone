@@ -22,6 +22,8 @@ import { UpdateRideArgs } from "./UpdateRideArgs";
 import { DeleteRideArgs } from "./DeleteRideArgs";
 import { Driver } from "../../driver/base/Driver";
 import { Rider } from "../../rider/base/Rider";
+import { PayRideInput } from "../PayRideInput";
+import { PayRideOutput } from "../PayRideOutput";
 import { RideService } from "../ride.service";
 @graphql.Resolver(() => Ride)
 export class RideResolverBase {
@@ -141,5 +143,13 @@ export class RideResolverBase {
       return null;
     }
     return result;
+  }
+
+  @graphql.Mutation(() => PayRideOutput)
+  async PayRide(
+    @graphql.Args()
+    args: PayRideInput
+  ): Promise<PayRideOutput> {
+    return this.service.PayRide(args);
   }
 }

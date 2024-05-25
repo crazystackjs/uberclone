@@ -22,6 +22,8 @@ import { Ride } from "./Ride";
 import { RideFindManyArgs } from "./RideFindManyArgs";
 import { RideWhereUniqueInput } from "./RideWhereUniqueInput";
 import { RideUpdateInput } from "./RideUpdateInput";
+import { PayRideInput } from "../PayRideInput";
+import { PayRideOutput } from "../PayRideOutput";
 
 export class RideControllerBase {
   constructor(protected readonly service: RideService) {}
@@ -238,5 +240,22 @@ export class RideControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.Post("/pay-ride")
+  @swagger.ApiOkResponse({
+    type: PayRideOutput,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async PayRide(
+    @common.Body()
+    body: PayRideInput
+  ): Promise<PayRideOutput> {
+    return this.service.PayRide(body);
   }
 }

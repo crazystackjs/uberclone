@@ -16,6 +16,8 @@ import {
   Driver as PrismaDriver,
   Rider as PrismaRider,
 } from "@prisma/client";
+import { PayRideInput } from "../PayRideInput";
+import { PayRideOutput } from "../PayRideOutput";
 
 export class RideServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -64,5 +66,8 @@ export class RideServiceBase {
         where: { id: parentId },
       })
       .rider();
+  }
+  async PayRide(args: PayRideInput): Promise<PayRideOutput> {
+    throw new Error("Not implemented");
   }
 }
