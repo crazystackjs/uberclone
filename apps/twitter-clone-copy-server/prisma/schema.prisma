@@ -1,0 +1,137 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Driver {
+  createdAt     DateTime @default(now())
+  email         String?
+  firstName     String?
+  id            String   @id @default(cuid())
+  lastName      String?
+  licenseNumber String?
+  updatedAt     DateTime @updatedAt
+}
+
+model ChatRoom {
+  createdAt   DateTime @default(now())
+  createdBy   String?
+  description String?
+  id          String   @id @default(cuid())
+  name        String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Retweet {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  tweetId   String?
+  updatedAt DateTime @updatedAt
+  userId    String?
+}
+
+model HeatMapZone {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  intensity Int?
+  location  String?
+  radius    Int?
+  updatedAt DateTime @updatedAt
+}
+
+model Rider {
+  createdAt DateTime @default(now())
+  email     String?
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  updatedAt DateTime @updatedAt
+}
+
+model Message {
+  createdAt       DateTime @default(now())
+  id              String   @id @default(cuid())
+  recipientUserId String?
+  senderUserId    String?
+  text            String?
+  updatedAt       DateTime @updatedAt
+}
+
+model Tweet {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  ratings   Rating[]
+  text      String?
+  updatedAt DateTime @updatedAt
+  userId    String?
+}
+
+model Ride {
+  createdAt       DateTime @default(now())
+  driverId        String?
+  dropoffLocation String?
+  id              String   @id @default(cuid())
+  pickupLocation  String?
+  riderId         String?
+  updatedAt       DateTime @updatedAt
+}
+
+model Vehicle {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  make      String?
+  model     String?
+  updatedAt DateTime @updatedAt
+  year      Int?
+}
+
+model Like {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  tweetId   String?
+  updatedAt DateTime @updatedAt
+  userId    String?
+}
+
+model Follower {
+  createdAt      DateTime @default(now())
+  followedUserId String?
+  followerUserId String?
+  id             String   @id @default(cuid())
+  updatedAt      DateTime @updatedAt
+}
+
+model User {
+  createdAt      DateTime @default(now())
+  email          String?
+  id             String   @id @default(cuid())
+  password       String?
+  profilePicture Json?
+  ratings        Rating[]
+  updatedAt      DateTime @updatedAt
+  username       String?
+}
+
+model Rating {
+  comments     String?
+  createdAt    DateTime @default(now())
+  id           String   @id @default(cuid())
+  ratingScore  Int?
+  ratingTweet  String?
+  ratingUser   String?
+  ratingValue  Int?
+  relatedTweet String?
+  relatedUser  String?
+  review       String?
+  reviewText   String?
+  tweet        Tweet?   @relation(fields: [tweetId], references: [id])
+  tweetId      String?
+  updatedAt    DateTime @updatedAt
+  user         User?    @relation(fields: [userId], references: [id])
+  userId       String?
+  value        Int?
+}
