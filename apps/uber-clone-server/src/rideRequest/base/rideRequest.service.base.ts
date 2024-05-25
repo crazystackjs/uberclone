@@ -19,6 +19,8 @@ import { AcceptRideRequestInput } from "../AcceptRideRequestInput";
 import { AcceptRideRequestOutput } from "../AcceptRideRequestOutput";
 import { CancelRideRequestInput } from "../CancelRideRequestInput";
 import { CancelRideRequestOutput } from "../CancelRideRequestOutput";
+import { FinishRideRequestInput } from "../FinishRideRequestInput";
+import { FinishRideRequestOutput } from "../FinishRideRequestOutput";
 
 export class RideRequestServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -72,6 +74,11 @@ export class RideRequestServiceBase {
   async CancelRideRequest(
     args: CancelRideRequestInput
   ): Promise<CancelRideRequestOutput> {
+    throw new Error("Not implemented");
+  }
+  async FinishRideRequest(
+    args: FinishRideRequestInput
+  ): Promise<FinishRideRequestOutput> {
     throw new Error("Not implemented");
   }
 }

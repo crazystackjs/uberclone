@@ -25,6 +25,8 @@ import { AcceptRideRequestInput } from "../AcceptRideRequestInput";
 import { AcceptRideRequestOutput } from "../AcceptRideRequestOutput";
 import { CancelRideRequestInput } from "../CancelRideRequestInput";
 import { CancelRideRequestOutput } from "../CancelRideRequestOutput";
+import { FinishRideRequestInput } from "../FinishRideRequestInput";
+import { FinishRideRequestOutput } from "../FinishRideRequestOutput";
 import { RideRequestService } from "../rideRequest.service";
 @graphql.Resolver(() => RideRequest)
 export class RideRequestResolverBase {
@@ -145,5 +147,13 @@ export class RideRequestResolverBase {
     args: CancelRideRequestInput
   ): Promise<CancelRideRequestOutput> {
     return this.service.CancelRideRequest(args);
+  }
+
+  @graphql.Mutation(() => FinishRideRequestOutput)
+  async FinishRideRequest(
+    @graphql.Args()
+    args: FinishRideRequestInput
+  ): Promise<FinishRideRequestOutput> {
+    return this.service.FinishRideRequest(args);
   }
 }

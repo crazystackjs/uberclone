@@ -22,9 +22,10 @@ import { RideRequest } from "./RideRequest";
 import { RideRequestFindManyArgs } from "./RideRequestFindManyArgs";
 import { RideRequestWhereUniqueInput } from "./RideRequestWhereUniqueInput";
 import { RideRequestUpdateInput } from "./RideRequestUpdateInput";
-import { CancelRideRequestInput } from "../CancelRideRequestInput";
+import { FinishRideRequestInput } from "../FinishRideRequestInput";
 import { AcceptRideRequestOutput } from "../AcceptRideRequestOutput";
 import { CancelRideRequestOutput } from "../CancelRideRequestOutput";
+import { FinishRideRequestOutput } from "../FinishRideRequestOutput";
 
 export class RideRequestControllerBase {
   constructor(protected readonly service: RideRequestService) {}
@@ -210,7 +211,7 @@ export class RideRequestControllerBase {
   })
   async AcceptRideRequest(
     @common.Body()
-    body: CancelRideRequestInput
+    body: FinishRideRequestInput
   ): Promise<AcceptRideRequestOutput> {
     return this.service.AcceptRideRequest(body);
   }
@@ -227,8 +228,25 @@ export class RideRequestControllerBase {
   })
   async CancelRideRequest(
     @common.Body()
-    body: CancelRideRequestInput
+    body: FinishRideRequestInput
   ): Promise<CancelRideRequestOutput> {
     return this.service.CancelRideRequest(body);
+  }
+
+  @common.Post("/finish-ride")
+  @swagger.ApiOkResponse({
+    type: FinishRideRequestOutput,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async FinishRideRequest(
+    @common.Body()
+    body: FinishRideRequestInput
+  ): Promise<FinishRideRequestOutput> {
+    return this.service.FinishRideRequest(body);
   }
 }
