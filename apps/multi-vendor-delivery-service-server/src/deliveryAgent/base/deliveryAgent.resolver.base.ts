@@ -22,6 +22,8 @@ import { UpdateDeliveryAgentArgs } from "./UpdateDeliveryAgentArgs";
 import { DeleteDeliveryAgentArgs } from "./DeleteDeliveryAgentArgs";
 import { OrderFindManyArgs } from "../../order/base/OrderFindManyArgs";
 import { Order } from "../../order/base/Order";
+import { FindNearbyDeliveryAgentsInput } from "../FindNearbyDeliveryAgentsInput";
+import { FindNearbyDeliveryAgentsOutput } from "../FindNearbyDeliveryAgentsOutput";
 import { DeliveryAgentService } from "../deliveryAgent.service";
 @graphql.Resolver(() => DeliveryAgent)
 export class DeliveryAgentResolverBase {
@@ -111,5 +113,13 @@ export class DeliveryAgentResolverBase {
     }
 
     return results;
+  }
+
+  @graphql.Query(() => [FindNearbyDeliveryAgentsOutput])
+  async FindNearbyDeliveryAgents(
+    @graphql.Args()
+    args: FindNearbyDeliveryAgentsInput
+  ): Promise<FindNearbyDeliveryAgentsOutput[]> {
+    return this.service.FindNearbyDeliveryAgents(args);
   }
 }

@@ -15,6 +15,8 @@ import {
   DeliveryAgent as PrismaDeliveryAgent,
   Order as PrismaOrder,
 } from "@prisma/client";
+import { FindNearbyDeliveryAgentsInput } from "../FindNearbyDeliveryAgentsInput";
+import { FindNearbyDeliveryAgentsOutput } from "../FindNearbyDeliveryAgentsOutput";
 
 export class DeliveryAgentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -62,5 +64,10 @@ export class DeliveryAgentServiceBase {
         where: { id: parentId },
       })
       .orders(args);
+  }
+  async FindNearbyDeliveryAgents(
+    args: FindNearbyDeliveryAgentsInput
+  ): Promise<FindNearbyDeliveryAgentsOutput[]> {
+    throw new Error("Not implemented");
   }
 }

@@ -25,6 +25,8 @@ import { DeliveryAgentUpdateInput } from "./DeliveryAgentUpdateInput";
 import { OrderFindManyArgs } from "../../order/base/OrderFindManyArgs";
 import { Order } from "../../order/base/Order";
 import { OrderWhereUniqueInput } from "../../order/base/OrderWhereUniqueInput";
+import { FindNearbyDeliveryAgentsInput } from "../FindNearbyDeliveryAgentsInput";
+import { FindNearbyDeliveryAgentsOutput } from "../FindNearbyDeliveryAgentsOutput";
 
 export class DeliveryAgentControllerBase {
   constructor(protected readonly service: DeliveryAgentService) {}
@@ -249,5 +251,22 @@ export class DeliveryAgentControllerBase {
       data,
       select: { id: true },
     });
+  }
+
+  @common.Get("/find-nearby-delivery-agents")
+  @swagger.ApiOkResponse({
+    type: FindNearbyDeliveryAgentsOutput,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async FindNearbyDeliveryAgents(
+    @common.Body()
+    body: FindNearbyDeliveryAgentsInput
+  ): Promise<FindNearbyDeliveryAgentsOutput[]> {
+    return this.service.FindNearbyDeliveryAgents(body);
   }
 }
