@@ -23,6 +23,7 @@ import { OrderFindManyArgs } from "./OrderFindManyArgs";
 import { OrderWhereUniqueInput } from "./OrderWhereUniqueInput";
 import { OrderUpdateInput } from "./OrderUpdateInput";
 import { PayOrderInput } from "../PayOrderInput";
+import { GetNearbyOrderRequestsOutput } from "../GetNearbyOrderRequestsOutput";
 import { PayOrderOutput } from "../PayOrderOutput";
 
 export class OrderControllerBase {
@@ -282,6 +283,23 @@ export class OrderControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.Get("/get-nearby-order-requests")
+  @swagger.ApiOkResponse({
+    type: GetNearbyOrderRequestsOutput,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async GetNearbyOrderRequests(
+    @common.Body()
+    body: PayOrderInput
+  ): Promise<GetNearbyOrderRequestsOutput[]> {
+    return this.service.GetNearbyOrderRequests(body);
   }
 
   @common.Post("/pay-order")

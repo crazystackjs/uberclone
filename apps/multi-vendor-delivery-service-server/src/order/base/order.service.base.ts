@@ -19,6 +19,8 @@ import {
   Vendor as PrismaVendor,
 } from "@prisma/client";
 
+import { GetNearbyOrderRequestsInput } from "../GetNearbyOrderRequestsInput";
+import { GetNearbyOrderRequestsOutput } from "../GetNearbyOrderRequestsOutput";
 import { PayOrderInput } from "../PayOrderInput";
 import { PayOrderOutput } from "../PayOrderOutput";
 
@@ -79,6 +81,11 @@ export class OrderServiceBase {
         where: { id: parentId },
       })
       .vendor();
+  }
+  async GetNearbyOrderRequests(
+    args: GetNearbyOrderRequestsInput
+  ): Promise<GetNearbyOrderRequestsOutput[]> {
+    throw new Error("Not implemented");
   }
   async PayOrder(args: PayOrderInput): Promise<PayOrderOutput> {
     throw new Error("Not implemented");

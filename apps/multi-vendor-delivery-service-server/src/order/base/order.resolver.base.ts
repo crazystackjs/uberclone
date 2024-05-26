@@ -23,6 +23,8 @@ import { DeleteOrderArgs } from "./DeleteOrderArgs";
 import { Customer } from "../../customer/base/Customer";
 import { DeliveryAgent } from "../../deliveryAgent/base/DeliveryAgent";
 import { Vendor } from "../../vendor/base/Vendor";
+import { GetNearbyOrderRequestsInput } from "../GetNearbyOrderRequestsInput";
+import { GetNearbyOrderRequestsOutput } from "../GetNearbyOrderRequestsOutput";
 import { PayOrderInput } from "../PayOrderInput";
 import { PayOrderOutput } from "../PayOrderOutput";
 import { OrderService } from "../order.service";
@@ -177,6 +179,14 @@ export class OrderResolverBase {
       return null;
     }
     return result;
+  }
+
+  @graphql.Query(() => [GetNearbyOrderRequestsOutput])
+  async GetNearbyOrderRequests(
+    @graphql.Args()
+    args: GetNearbyOrderRequestsInput
+  ): Promise<GetNearbyOrderRequestsOutput[]> {
+    return this.service.GetNearbyOrderRequests(args);
   }
 
   @graphql.Mutation(() => PayOrderOutput)
