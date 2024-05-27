@@ -25,6 +25,11 @@ import { VideoUpdateInput } from "./VideoUpdateInput";
 import { SessionFindManyArgs } from "../../session/base/SessionFindManyArgs";
 import { Session } from "../../session/base/Session";
 import { SessionWhereUniqueInput } from "../../session/base/SessionWhereUniqueInput";
+import { CommentDto } from "../CommentDto";
+import { RatingDto } from "../RatingDto";
+import { PopularVideoDto } from "../PopularVideoDto";
+import { CategorySearchDto } from "../CategorySearchDto";
+import { RecommendationDto } from "../RecommendationDto";
 
 export class VideoControllerBase {
   constructor(protected readonly service: VideoService) {}
@@ -230,5 +235,175 @@ export class VideoControllerBase {
       data,
       select: { id: true },
     });
+  }
+
+  @common.Post("/comentar-video")
+  @swagger.ApiOkResponse({
+    type: CommentDto,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async AdicionarComentarios(
+    @common.Body()
+    body: string
+  ): Promise<CommentDto> {
+    return this.service.AdicionarComentarios(body);
+  }
+
+  @common.Get("/:id/adicionar-coment-rios")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async AdicionarComentRios(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.AdicionarComentRios(body);
+  }
+
+  @common.Post("/avaliar-video")
+  @swagger.ApiOkResponse({
+    type: RatingDto,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async AvaliarVideos(
+    @common.Body()
+    body: string
+  ): Promise<RatingDto> {
+    return this.service.AvaliarVideos(body);
+  }
+
+  @common.Get("/:id/avaliar-v-deos")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async AvaliarVDeos(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.AvaliarVDeos(body);
+  }
+
+  @common.Get("/videos-populares")
+  @swagger.ApiOkResponse({
+    type: PopularVideoDto,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async ListarVideosPopulares(
+    @common.Body()
+    body: string
+  ): Promise<PopularVideoDto[]> {
+    return this.service.ListarVideosPopulares(body);
+  }
+
+  @common.Get("/:id/listar-v-deos-populares")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async ListarVDeosPopulares(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.ListarVDeosPopulares(body);
+  }
+
+  @common.Get("/pesquisar-videos")
+  @swagger.ApiOkResponse({
+    type: CategorySearchDto,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async PesquisarVideosPorCategoria(
+    @common.Body()
+    body: string
+  ): Promise<CategorySearchDto[]> {
+    return this.service.PesquisarVideosPorCategoria(body);
+  }
+
+  @common.Get("/:id/pesquisar-v-deos-por-categoria")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async PesquisarVDeosPorCategoria(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.PesquisarVDeosPorCategoria(body);
+  }
+
+  @common.Get("/recomendar-videos")
+  @swagger.ApiOkResponse({
+    type: RecommendationDto,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async RecomendarVideos(
+    @common.Body()
+    body: string
+  ): Promise<RecommendationDto[]> {
+    return this.service.RecomendarVideos(body);
+  }
+
+  @common.Get("/:id/recomendar-v-deos")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async RecomendarVDeos(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.RecomendarVDeos(body);
   }
 }

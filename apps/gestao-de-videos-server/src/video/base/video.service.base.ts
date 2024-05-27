@@ -15,6 +15,11 @@ import {
   Video as PrismaVideo,
   Session as PrismaSession,
 } from "@prisma/client";
+import { CommentDto } from "../CommentDto";
+import { RatingDto } from "../RatingDto";
+import { PopularVideoDto } from "../PopularVideoDto";
+import { CategorySearchDto } from "../CategorySearchDto";
+import { RecommendationDto } from "../RecommendationDto";
 
 export class VideoServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -58,5 +63,37 @@ export class VideoServiceBase {
         where: { id: parentId },
       })
       .sessions(args);
+  }
+  async AdicionarComentarios(args: CommentDto): Promise<CommentDto> {
+    throw new Error("Not implemented");
+  }
+  async AdicionarComentRios(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
+  async AvaliarVideos(args: RatingDto): Promise<RatingDto> {
+    throw new Error("Not implemented");
+  }
+  async AvaliarVDeos(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
+  async ListarVideosPopulares(args: string): Promise<PopularVideoDto[]> {
+    throw new Error("Not implemented");
+  }
+  async ListarVDeosPopulares(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
+  async PesquisarVideosPorCategoria(
+    args: string
+  ): Promise<CategorySearchDto[]> {
+    throw new Error("Not implemented");
+  }
+  async PesquisarVDeosPorCategoria(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
+  async RecomendarVideos(args: string): Promise<RecommendationDto[]> {
+    throw new Error("Not implemented");
+  }
+  async RecomendarVDeos(args: string): Promise<string> {
+    throw new Error("Not implemented");
   }
 }

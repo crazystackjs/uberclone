@@ -22,6 +22,11 @@ import { UpdateVideoArgs } from "./UpdateVideoArgs";
 import { DeleteVideoArgs } from "./DeleteVideoArgs";
 import { SessionFindManyArgs } from "../../session/base/SessionFindManyArgs";
 import { Session } from "../../session/base/Session";
+import { CommentDto } from "../CommentDto";
+import { RatingDto } from "../RatingDto";
+import { PopularVideoDto } from "../PopularVideoDto";
+import { CategorySearchDto } from "../CategorySearchDto";
+import { RecommendationDto } from "../RecommendationDto";
 import { VideoService } from "../video.service";
 @graphql.Resolver(() => Video)
 export class VideoResolverBase {
@@ -107,5 +112,85 @@ export class VideoResolverBase {
     }
 
     return results;
+  }
+
+  @graphql.Mutation(() => CommentDto)
+  async AdicionarComentarios(
+    @graphql.Args()
+    args: CommentDto
+  ): Promise<CommentDto> {
+    return this.service.AdicionarComentarios(args);
+  }
+
+  @graphql.Query(() => String)
+  async AdicionarComentRios(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.AdicionarComentRios(args);
+  }
+
+  @graphql.Mutation(() => RatingDto)
+  async AvaliarVideos(
+    @graphql.Args()
+    args: RatingDto
+  ): Promise<RatingDto> {
+    return this.service.AvaliarVideos(args);
+  }
+
+  @graphql.Query(() => String)
+  async AvaliarVDeos(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.AvaliarVDeos(args);
+  }
+
+  @graphql.Query(() => [PopularVideoDto])
+  async ListarVideosPopulares(
+    @graphql.Args()
+    args: string
+  ): Promise<PopularVideoDto[]> {
+    return this.service.ListarVideosPopulares(args);
+  }
+
+  @graphql.Query(() => String)
+  async ListarVDeosPopulares(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.ListarVDeosPopulares(args);
+  }
+
+  @graphql.Query(() => [CategorySearchDto])
+  async PesquisarVideosPorCategoria(
+    @graphql.Args()
+    args: string
+  ): Promise<CategorySearchDto[]> {
+    return this.service.PesquisarVideosPorCategoria(args);
+  }
+
+  @graphql.Query(() => String)
+  async PesquisarVDeosPorCategoria(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.PesquisarVDeosPorCategoria(args);
+  }
+
+  @graphql.Query(() => [RecommendationDto])
+  async RecomendarVideos(
+    @graphql.Args()
+    args: string
+  ): Promise<RecommendationDto[]> {
+    return this.service.RecomendarVideos(args);
+  }
+
+  @graphql.Query(() => String)
+  async RecomendarVDeos(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.RecomendarVDeos(args);
   }
 }
