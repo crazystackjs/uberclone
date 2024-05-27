@@ -1,0 +1,29 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Video {
+  createdAt   DateTime  @default(now())
+  description String?
+  id          String    @id @default(cuid())
+  publishedAt DateTime?
+  sessions    Session[]
+  title       String?
+  updatedAt   DateTime  @updatedAt
+  url         String?
+}
+
+model Session {
+  createdAt   DateTime @default(now())
+  description String?
+  id          String   @id @default(cuid())
+  title       String?
+  updatedAt   DateTime @updatedAt
+  video       Video?   @relation(fields: [videoId], references: [id])
+  videoId     String?
+}
