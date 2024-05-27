@@ -60,4 +60,19 @@ export class SubscriptionServiceBase {
       })
       .user();
   }
+  async EnviarLembretesDeRenovacao(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
+  async GerenciarMetodosDePagamento(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
+  async MostrarHistoricoDeTransacoes(args: string): Promise<string[]> {
+    throw new Error("Not implemented");
+  }
+  async OferecerDescontos(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
+  async SuporteAoClienteViaChat(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
 }

@@ -194,4 +194,89 @@ export class SubscriptionControllerBase {
       throw error;
     }
   }
+
+  @common.Post("/enviar-lembretes-renovacao")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async EnviarLembretesDeRenovacao(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.EnviarLembretesDeRenovacao(body);
+  }
+
+  @common.Post("/gerenciar-metodos-pagamento")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async GerenciarMetodosDePagamento(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.GerenciarMetodosDePagamento(body);
+  }
+
+  @common.Get("/historico-transacoes")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async MostrarHistoricoDeTransacoes(
+    @common.Body()
+    body: string
+  ): Promise<string[]> {
+    return this.service.MostrarHistoricoDeTransacoes(body);
+  }
+
+  @common.Post("/oferecer-descontos")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async OferecerDescontos(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.OferecerDescontos(body);
+  }
+
+  @common.Post("/suporte-chat")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async SuporteAoClienteViaChat(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.SuporteAoClienteViaChat(body);
+  }
 }

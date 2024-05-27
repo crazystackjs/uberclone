@@ -126,4 +126,44 @@ export class SubscriptionResolverBase {
     }
     return result;
   }
+
+  @graphql.Mutation(() => String)
+  async EnviarLembretesDeRenovacao(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.EnviarLembretesDeRenovacao(args);
+  }
+
+  @graphql.Mutation(() => String)
+  async GerenciarMetodosDePagamento(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.GerenciarMetodosDePagamento(args);
+  }
+
+  @graphql.Query(() => [String])
+  async MostrarHistoricoDeTransacoes(
+    @graphql.Args()
+    args: string
+  ): Promise<string[]> {
+    return this.service.MostrarHistoricoDeTransacoes(args);
+  }
+
+  @graphql.Mutation(() => String)
+  async OferecerDescontos(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.OferecerDescontos(args);
+  }
+
+  @graphql.Mutation(() => String)
+  async SuporteAoClienteViaChat(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.SuporteAoClienteViaChat(args);
+  }
 }
