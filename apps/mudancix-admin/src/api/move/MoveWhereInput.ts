@@ -1,0 +1,35 @@
+import { FloatFilter } from "../../util/FloatFilter";
+import { DateTimeFilter } from "../../util/DateTimeFilter";
+import { CustomerWhereUniqueInput } from "../customer/CustomerWhereUniqueInput";
+import { MoveEmployeeListRelationFilter } from "../moveEmployee/MoveEmployeeListRelationFilter";
+import { FeedbackWhereUniqueInput } from "../feedback/FeedbackWhereUniqueInput";
+import { IntFilter } from "../../util/IntFilter";
+import { InsuranceListRelationFilter } from "../insurance/InsuranceListRelationFilter";
+import { ItemListRelationFilter } from "../item/ItemListRelationFilter";
+import { PaymentListRelationFilter } from "../payment/PaymentListRelationFilter";
+import { RouteListRelationFilter } from "../route/RouteListRelationFilter";
+import { StringFilter } from "../../util/StringFilter";
+import { StorageListRelationFilter } from "../storage/StorageListRelationFilter";
+import { VehicleWhereUniqueInput } from "../vehicle/VehicleWhereUniqueInput";
+
+export type MoveWhereInput = {
+  costDistance?: FloatFilter;
+  costVolume?: FloatFilter;
+  createdAt?: DateTimeFilter;
+  customer?: CustomerWhereUniqueInput;
+  date?: DateTimeFilter;
+  distanceKm?: FloatFilter;
+  employees?: MoveEmployeeListRelationFilter;
+  feedback?: FeedbackWhereUniqueInput;
+  id?: IntFilter;
+  insurance?: InsuranceListRelationFilter;
+  items?: ItemListRelationFilter;
+  payment?: PaymentListRelationFilter;
+  route?: RouteListRelationFilter;
+  status?: StringFilter;
+  storage?: StorageListRelationFilter;
+  totalCost?: FloatFilter;
+  updatedAt?: DateTimeFilter;
+  vehicle?: VehicleWhereUniqueInput;
+  volumeM3?: FloatFilter;
+};

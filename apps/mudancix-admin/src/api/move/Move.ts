@@ -1,0 +1,31 @@
+import { Customer } from "../customer/Customer";
+import { MoveEmployee } from "../moveEmployee/MoveEmployee";
+import { Feedback } from "../feedback/Feedback";
+import { Insurance } from "../insurance/Insurance";
+import { Item } from "../item/Item";
+import { Payment } from "../payment/Payment";
+import { Route } from "../route/Route";
+import { Storage } from "../storage/Storage";
+import { Vehicle } from "../vehicle/Vehicle";
+
+export type Move = {
+  costDistance: number;
+  costVolume: number;
+  createdAt: Date;
+  customer?: Customer;
+  date: Date;
+  distanceKm: number;
+  employees?: Array<MoveEmployee>;
+  feedback?: Feedback | null;
+  id: number;
+  insurance?: Array<Insurance>;
+  items?: Array<Item>;
+  payment?: Array<Payment>;
+  route?: Array<Route>;
+  status: string;
+  storage?: Array<Storage>;
+  totalCost: number;
+  updatedAt: Date;
+  vehicle?: Vehicle | null;
+  volumeM3: number;
+};
