@@ -1,0 +1,259 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt       DateTime        @default(now())
+  email           String          @unique
+  id              String          @id @default(cuid())
+  name            String
+  password        String
+  phoneNumber     String
+  ratingsGiven    Rating[]        @relation(name: "rater")
+  ratingsReceived Rating[]        @relation(name: "ratee")
+  role            EnumUserRole
+  supportTicket   SupportTicket[]
+  updatedAt       DateTime        @updatedAt
+}
+
+model Driver {
+  chats         Chat[]
+  createdAt     DateTime  @default(now())
+  email         String    @unique
+  id            String    @id @default(cuid())
+  isAvailable   Boolean   @default(true)
+  moves         Move[]
+  name          String
+  payments      Payment[]
+  phoneNumber   String
+  totalEarnings Float     @default(0)
+  updatedAt     DateTime  @updatedAt
+  vehicle       Vehicle   @relation(fields: [vehicleId], references: [id])
+  vehicleId     String
+}
+
+model Customer {
+  address     String
+  chats       Chat[]
+  createdAt   DateTime  @default(now())
+  email       String    @unique
+  id          String    @id @default(cuid())
+  moves       Move[]
+  name        String
+  payments    Payment[]
+  phoneNumber String
+  updatedAt   DateTime  @updatedAt
+}
+
+model Move {
+  budget           Budget?
+  completedAt      DateTime?
+  costSimulation   CostSimulation[]
+  createdAt        DateTime         @default(now())
+  customer         Customer         @relation(fields: [customerId], references: [id])
+  customerId       String
+  deliveryLocation String
+  distance         Float
+  driver           Driver?          @relation(fields: [driverId], references: [id])
+  driverId         String?
+  gpsData          GpsDatum[]
+  id               String           @id @default(cuid())
+  payments         Payment[]
+  pickupLocation   String
+  price            Float
+  route            Route?
+  scheduledAt      DateTime
+  status           EnumMoveStatus
+  updatedAt        DateTime         @updatedAt
+  volume           Float
+}
+
+model Vehicle {
+  createdAt   DateTime @default(now())
+  driver      Driver[]
+  id          String   @id @default(cuid())
+  make        String
+  model       String
+  plateNumber String
+  updatedAt   DateTime @default(now())
+}
+
+model Rating {
+  comment   String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  ratee     User     @relation(name: "ratee", fields: [rateeId], references: [id])
+  rateeId   String
+  rater     User     @relation(name: "rater", fields: [raterId], references: [id])
+  raterId   String
+  rating    Int
+  updatedAt DateTime @updatedAt
+}
+
+model SupportTicket {
+  createdAt DateTime                @default(now())
+  id        String                  @id @default(cuid())
+  issue     String
+  status    EnumSupportTicketStatus @default(PENDING)
+  updatedAt DateTime                @updatedAt
+  user      User                    @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+model CostSimulation {
+  additionalServices Json?
+  createdAt          DateTime @default(now())
+  distance           Float
+  id                 String   @id @default(cuid())
+  move               Move     @relation(fields: [moveId], references: [id])
+  moveId             String
+  totalCost          Float
+  updatedAt          DateTime @updatedAt
+  volume             Float
+}
+
+model Route {
+  createdAt     DateTime @default(now())
+  endLocation   String
+  id            String   @id @default(cuid())
+  move          Move     @relation(fields: [moveId], references: [id])
+  moveId        String   @unique
+  optimized     Boolean  @default(false)
+  startLocation String
+  updatedAt     DateTime @updatedAt
+  waypoints     Json
+}
+
+model GpsDatum {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  location  Json
+  move      Move     @relation(fields: [moveId], references: [id])
+  moveId    String
+  timestamp DateTime
+
+  @@map("GPSData")
+}
+
+model Budget {
+  budgetItems             BudgetItem[]
+  createdAt               DateTime     @default(now())
+  customerEmail           String
+  customerName            String
+  customerPhone           String
+  customerWhatsapp        String
+  destinationLocationType String
+  exclusiveTruck          Boolean
+  flexibleDate            Boolean
+  hoisting                Boolean
+  id                      String       @id @default(cuid())
+  insurance               Boolean
+  move                    Move         @relation(fields: [moveId], references: [id])
+  moveId                  String       @unique
+  originLocationType      String
+  specialInstructions     String?
+  termsAccepted           Boolean
+  updatedAt               DateTime     @updatedAt
+}
+
+model BudgetItem {
+  additionalRequirements String?
+  budget                 Budget                 @relation(fields: [budgetId], references: [id])
+  budgetId               String
+  category               EnumBudgetItemCategory
+  createdAt              DateTime               @default(now())
+  id                     String                 @id @default(cuid())
+  itemName               String
+  needsPacking           Boolean
+  needsTempControl       Boolean
+  photoUrl               String?
+  quantity               Int
+  updatedAt              DateTime               @updatedAt
+}
+
+model Payment {
+  amount     Float
+  createdAt  DateTime          @default(now())
+  customer   Customer          @relation(fields: [customerId], references: [id])
+  customerId String
+  driver     Driver?           @relation(fields: [driverId], references: [id])
+  driverId   String?
+  id         String            @id @default(cuid())
+  method     EnumPaymentMethod
+  move       Move              @relation(fields: [moveId], references: [id])
+  moveId     String
+  status     EnumPaymentStatus
+  updatedAt  DateTime          @updatedAt
+}
+
+model Chat {
+  createdAt           DateTime  @default(now())
+  customerMessenger   Customer  @relation(fields: [customerMessengerId], references: [id])
+  customerMessengerId String
+  driverMessenger     Driver    @relation(fields: [driverMessengerId], references: [id])
+  driverMessengerId   String
+  id                  String    @id @default(cuid())
+  messages            Message[]
+  updatedAt           DateTime  @updatedAt
+}
+
+model Message {
+  chat      Chat              @relation(fields: [chatId], references: [id])
+  chatId    String
+  content   String
+  createdAt DateTime          @default(now())
+  id        String            @id @default(cuid())
+  sender    EnumMessageSender
+  updatedAt DateTime          @updatedAt
+}
+
+enum EnumUserRole {
+  ADMIN
+  DRIVER
+  CUSTOMER
+}
+
+enum EnumMoveStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELED
+}
+
+enum EnumSupportTicketStatus {
+  PENDING
+  RESOLVED
+  CLOSED
+}
+
+enum EnumBudgetItemCategory {
+  ESTAR_E_JANTAR
+  DORMITORIO
+  COZINHA_AREA
+  VEICULOS
+  ESCRITORIO
+  DIVERSOS
+}
+
+enum EnumPaymentMethod {
+  CREDIT_CARD
+  DEBIT_CARD
+  PAYPAL
+  BANK_TRANSFER
+}
+
+enum EnumPaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum EnumMessageSender {
+  CUSTOMER
+  DRIVER
+}
