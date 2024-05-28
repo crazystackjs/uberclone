@@ -1,0 +1,30 @@
+import { BudgetWhereUniqueInput } from "../budget/BudgetWhereUniqueInput";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { CostSimulationListRelationFilter } from "../costSimulation/CostSimulationListRelationFilter";
+import { DateTimeFilter } from "../../util/DateTimeFilter";
+import { CustomerWhereUniqueInput } from "../customer/CustomerWhereUniqueInput";
+import { StringFilter } from "../../util/StringFilter";
+import { FloatFilter } from "../../util/FloatFilter";
+import { DriverWhereUniqueInput } from "../driver/DriverWhereUniqueInput";
+import { GpsDatumListRelationFilter } from "../gpsDatum/GpsDatumListRelationFilter";
+import { RouteWhereUniqueInput } from "../route/RouteWhereUniqueInput";
+
+export type MoveWhereInput = {
+  budget?: BudgetWhereUniqueInput;
+  completedAt?: DateTimeNullableFilter;
+  costSimulation?: CostSimulationListRelationFilter;
+  createdAt?: DateTimeFilter;
+  customer?: CustomerWhereUniqueInput;
+  deliveryLocation?: StringFilter;
+  distance?: FloatFilter;
+  driver?: DriverWhereUniqueInput;
+  gpsData?: GpsDatumListRelationFilter;
+  id?: StringFilter;
+  pickupLocation?: StringFilter;
+  price?: FloatFilter;
+  route?: RouteWhereUniqueInput;
+  scheduledAt?: DateTimeFilter;
+  status?: "PENDING" | "IN_PROGRESS" | "COMPLETED" | "CANCELED";
+  updatedAt?: DateTimeFilter;
+  volume?: FloatFilter;
+};
